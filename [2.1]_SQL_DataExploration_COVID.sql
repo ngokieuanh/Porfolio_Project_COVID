@@ -147,7 +147,7 @@ FROM CovidDeaths dea JOIN CovidVaccinations vac
 WHERE dea.continent is not null
 	AND vac.new_vaccinations is not null
 ORDER BY 1,2
--- (13) Sử dụng CTE tính toán tỷ lệ % số liều vắc-xin mới trên dân số theo ngày và lục địa
+-- [13] Sử dụng CTE tính toán tỷ lệ % số liều vắc-xin mới trên dân số theo ngày và lục địa
 WITH PopvsVac (Continent, Location, Date, Population, New_Vaccinations, Rolling)
 AS (
   SELECT
@@ -168,7 +168,7 @@ AS (
 SELECT *, (Rolling/Population) *100
 FROM PopvsVac;
 
-/* 14 Sử dụng bảng tạm để lưu trữ kết quả của việc tính toán tỷ lệ phần trăm dân số đã tiêm vắc-xin dựa trên CTE
+/* [14] Sử dụng bảng tạm để lưu trữ kết quả của việc tính toán tỷ lệ phần trăm dân số đã tiêm vắc-xin dựa trên CTE
 Sau đó truy vấn dữ liệu từ bảng tạm và tính toán tỷ lệ phần trăm tiêm vắc-xin trên dân số */
 DROP TABLE if exists #PercentPopulationVac
 Create Table #PercentPopulationVac
